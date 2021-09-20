@@ -1,3 +1,5 @@
+import random
+
 class Cell:
         def __init__(self):
             self.value = ' '
@@ -13,9 +15,16 @@ class Cell:
 class Game:
     def __init__(self, game_id=""):
         self.game_id = game_id
+        self.current_player = self.get_random_player()
 
     def print_welcome(self, welcome_message="Welcome to Tic Tac Toe!"):
         print(welcome_message)
+    
+    def start_game(self):
+        self.print_welcome()
+    
+    def get_random_player(self):
+        return random.choice(['X','O'])
 
 class Board:
     def __init__(self, board_id=""):

@@ -32,3 +32,11 @@ def test_cell_set_value():
     cell.set_val(set_val)
     assert cell.value == set_val
     assert cell.is_set()
+
+def test_get_random_player():
+    "Get a random starting player from the game class"
+    ttt_game = Game()
+    assert ttt_game.get_random_player() in ['X','O']
+
+# def test_get_next_player():
+#     "Get the next player, should be X if O or O if X"
