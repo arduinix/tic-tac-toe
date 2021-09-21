@@ -1,4 +1,5 @@
 from tic_tac_toe.lib import Game
+from .constants import EXPECTED_GAME_BOARD_STRING
 
 
 class TestGame:
@@ -26,3 +27,10 @@ class TestGame:
         next_player = ttt_game.get_current_player()
 
         assert current_player != next_player
+
+    def test_get_game_board_string(self):
+        "An empty, formatted Tic Tac Toe board should be returned"
+
+        board_string = Game().get_game_board()
+
+        assert board_string == EXPECTED_GAME_BOARD_STRING

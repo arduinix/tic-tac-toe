@@ -1,5 +1,10 @@
+from tic_tac_toe.lib import Game
+
+
 def main():
-    print("Welcome to Tic Tac Toe!")
+    game = Game()
+    print(game.get_welcome_message())
+    print(game.get_game_board())
 
 
 if __name__ == '__main__':
