@@ -1,16 +1,16 @@
 import random
 
 class Cell:
-        def __init__(self):
-            self.value = ' '
+    def __init__(self):
+        self.value = ' '
 
-        def set_val(self, value):
-            self.value = value
+    def set_val(self, value):
+        self.value = value
 
-        def is_set(self):
-            if self.value == ' ':
-                return False
-            return True
+    def is_set(self):
+        if self.value == ' ':
+            return False
+        return True
 
 class Game:
     def __init__(self, game_id=""):

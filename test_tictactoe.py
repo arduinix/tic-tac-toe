@@ -12,11 +12,13 @@ def test_game_welcome_message(capsys):
     captured = capsys.readouterr()
     assert captured.out == "{}\n".format(w_message)
 
-def test_initial_game_board(capsys):
+def test_initial_board_is_empty(capsys):
     "Empty Tic Tac Toe board should be printed on the console"
     ttt_board = Board()
+
     ttt_board.print_board()
     captured = capsys.readouterr()
+    
     assert captured.out == " | | \n-+-+-\n | | \n-+-+-\n | | \n"
 
 def test_cell_create():
