@@ -1,4 +1,4 @@
-from project.lib import Game
+from tic_tac_toe.lib import Game
 
 
 class TestGame:

@@ -1,4 +1,4 @@
-from project.lib import Cell
+from tic_tac_toe.lib import Cell
 
 
 class TestCell:

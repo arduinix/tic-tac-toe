@@ -1,4 +1,4 @@
-from project.lib import Board
+from tic_tac_toe.lib import Board
 
 
 class TestBoard:
