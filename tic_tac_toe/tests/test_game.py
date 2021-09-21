@@ -16,15 +16,13 @@ class TestGame:
         ttt_game = Game()
 
         assert ttt_game.get_random_player() in ['X', 'O']
-    
+
     def test_change_current_player(self):
         "If the current player is X player should switch to O and visa versa"
 
         ttt_game = Game()
         current_player = ttt_game.get_current_player()
-        ttt_game.swtich_player()
+        ttt_game.switch_player()
         next_player = ttt_game.get_current_player()
 
         assert current_player != next_player
-
-        
