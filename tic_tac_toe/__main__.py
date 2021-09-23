@@ -1,4 +1,4 @@
-from tic_tac_toe.lib import Game
+from tic_tac_toe.game import Game
 
 
 def main():
