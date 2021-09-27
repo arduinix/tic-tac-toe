@@ -19,13 +19,13 @@ class TestBoard:
         board.set_cell(random_cell, set_value)
 
         assert board.get_cell_value(random_cell) == set_value
-    
+
     def test_get_board_size(self):
         specified_board_size = 9
         "Verify that the size of the board is properly returned"
-        
+
         board = Board(board_size=specified_board_size)
-        
+
         assert board.board_size == specified_board_size
 
     def test_check_board_is_full(self):
@@ -36,4 +36,3 @@ class TestBoard:
             board.set_cell(i, 'X')
 
         assert board.is_board_full()
-

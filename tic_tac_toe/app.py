@@ -1,7 +1,7 @@
-from tic_tac_toe.game import Game
+from tic_tac_toe.game import GameActions
 
 
 def run():
-    game = GameActions()
-    print(game.get_welcome_message())
-    print(game.get_game_board())
+    game_actions = GameActions()
+    print(game_actions.get_welcome_message())
+    print(game_actions.get_game_board())
