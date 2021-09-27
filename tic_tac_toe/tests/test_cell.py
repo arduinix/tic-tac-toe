@@ -1,4 +1,4 @@
-from tic_tac_toe.lib import Cell
+from tic_tac_toe.game import Cell
 
 
 class TestCell:

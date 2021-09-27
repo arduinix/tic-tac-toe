@@ -1,4 +1,4 @@
-from tic_tac_toe.lib import Board
+from tic_tac_toe.game import Board
 from .constants import EXPECTED_GAME_BOARD_STRING
 
 
