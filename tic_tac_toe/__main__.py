@@ -1,11 +1,4 @@
-from tic_tac_toe.game import Game
-
-
-def main():
-    game = Game()
-    print(game.get_welcome_message())
-    print(game.get_game_board())
-
+from tic_tac_toe import app
 
 if __name__ == '__main__':
-    main()
+    app.run()
