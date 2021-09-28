@@ -135,3 +135,11 @@ class TestBoard:
         print(board.get_board_string())
 
         assert board.is_win() == set_value
+
+    def test_is_cell_set(self):
+        "Set a cell and verify that it is set"
+
+        board = Board()
+        board.set_cell(0, 0, 'X')
+
+        assert board.is_cell_set(0, 0) is True

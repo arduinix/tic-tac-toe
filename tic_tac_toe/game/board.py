@@ -68,6 +68,11 @@ class Board:
             return True
         return False
 
+    def is_cell_set(self, row, col):
+        if self._cell_is_set(self.board[row][col]):
+            return True
+        return False
+
     def list_has_wins(self, input_list):
         result = input_list.count(input_list[0])
 

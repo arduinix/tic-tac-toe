@@ -1,17 +1,32 @@
 import random
-from ..resources.constants import CONST_O, CONST_X
+from ..resources.constants import CONST_O, CONST_X, CONST_GAME_MESSAGES
 from .board import Board
 
 
-class GameActions(object):
+class GameActions:
 
-    def __init__(self, game_id=""):
+    def __init__(self, game_id="", custom_messages={}):
         self.game_id = game_id
-        self.current_player = self.get_random_player()
-        self.board = Board()
+        self.messages = custom_messages | CONST_GAME_MESSAGES
+        self.board = None
+        self.board_size = 0
+        self.is_game_running = False
+        self.current_player = None
 
-    def get_welcome_message(self, welcome_message="Welcome to Tic Tac Toe!"):
-        return welcome_message
+    def start_game(self, board_size):
+        self.board = Board(board_size=board_size)
+        self.is_game_running = True
+        self.set_starting_player()
+
+    def stop_game(self):
+        self.board = None
+        self.is_game_running = False
+
+    def get_message(self, message_name):
+        return self.messages[message_name]
+
+    def set_starting_player(self):
+        self.current_player = self.get_random_player()
 
     def get_random_player(self):
         return random.choice([CONST_X, CONST_O])
