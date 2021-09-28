@@ -1,2 +1,3 @@
 CONST_X = 'X'
 CONST_O = 'O'
+CONST_BOARD_DEFAULT_CHAR = ' '

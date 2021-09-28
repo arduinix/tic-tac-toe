@@ -28,5 +28,5 @@ class GameActions(object):
     def get_game_board(self):
         return self.board.get_board_string()
 
-    def play_cell(self, cell_number):
-        self.board.set_cell(cell_number, self.current_player)
+    def play_cell(self, row, col):
+        self.board.set_cell(row, col, self.current_player)

@@ -6,19 +6,21 @@ class TestBoard:
     def test_get_formatted_board_string(self):
         "An empty, formatted Tic Tac Toe board should be returned"
 
-        board_string = Board().get_board_string()
+        board_string = Board(board_size=3).get_board_string()
+        print(board_string)
 
         assert board_string == EXPECTED_GAME_BOARD_STRING
 
     def test_set_cell(self):
         set_value = 'X'
+        set_row = 2
+        set_col = 2
         "Set a cell on the board and verify that the cell is set"
 
         board = Board()
-        random_cell = board.get_random_cell_number()
-        board.set_cell(random_cell, set_value)
+        board.set_cell(set_row, set_col, set_value)
 
-        assert board.get_cell_value(random_cell) == set_value
+        assert board.get_cell_value(set_row, set_col) == set_value
 
     def test_get_board_size(self):
         specified_board_size = 9
@@ -32,7 +34,6 @@ class TestBoard:
         "Fill the board and verify that the board shows as full"
 
         board = Board()
-        for i in range(1, board.board_size + 1, 1):
-            board.set_cell(i, 'X')
+        board.fill_board()
 
         assert board.is_board_full()

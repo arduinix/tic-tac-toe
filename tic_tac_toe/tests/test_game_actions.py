@@ -36,11 +36,12 @@ class TestGameActions:
         assert board_string == EXPECTED_GAME_BOARD_STRING
 
     def test_play_board_cell(self):
-        played_cell_number = 7
-        "Player is able to play a board cell {}".format(str(played_cell_number))
+        played_row = 2
+        played_col = 2
+        "Player is able to play a board cell row {} col {}".format(str(played_row), str(played_col))
 
         ttt_game_actions = GameActions()
         current_player = ttt_game_actions.get_current_player()
-        ttt_game_actions.play_cell(played_cell_number)
+        ttt_game_actions.play_cell(played_row, played_col)
 
-        assert ttt_game_actions.board.get_cell_value(played_cell_number) == current_player
+        assert ttt_game_actions.board.get_cell_value(played_row, played_col) == current_player
