@@ -70,7 +70,7 @@ class TestBoard:
 
         input_list = [['A', 'B'], ['C', 'D']]
         expected_list = [['A', 'C'], ['B', 'D']]
-        
+
         print(board.transpose_2d_list(input_list))
 
         assert board.transpose_2d_list(input_list) == expected_list

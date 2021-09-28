@@ -1,4 +1,3 @@
-import random
 from ..resources.constants import CONST_O, CONST_X, CONST_BOARD_DEFAULT_CHAR
 
 
