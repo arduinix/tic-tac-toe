@@ -31,10 +31,13 @@ class TestBoard:
         assert board.board_size == specified_board_size
 
     def test_check_board_is_full(self):
+        set_value = 'X'
         "Fill the board and verify that the board shows as full"
 
         board = Board()
-        board.fill_board()
+        for row in range(board.board_size):
+            for col in range(board.board_size):
+                board.set_cell(row, col, set_value)
 
         assert board.is_board_full()
 
@@ -53,10 +56,10 @@ class TestBoard:
 
         assert board.is_horizontal_win() == set_value
 
-    def test_list_has_match(self):
+    def test_list_has_wins(self):
         "Check if the list_has_match method returns the desired result"
 
         board = Board()
 
-        assert board.list_has_match(['X', 'X', 'X']) == 'X'
-        assert board.list_has_match(['X', 'X', 'O']) is False
+        assert board.list_has_wins(['X', 'X', 'X']) == 'X'
+        assert board.list_has_wins(['X', 'X', 'O']) is False
