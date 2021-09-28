@@ -12,6 +12,6 @@ class Cell:
         if self.value == CONST_BOARD_DEFAULT_CHAR:
             return False
         return True
-    
+
     def get_default_char(self):
         return CONST_BOARD_DEFAULT_CHAR

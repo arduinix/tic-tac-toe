@@ -1,13 +1,19 @@
 from .cell import Cell
 import random
+from ..resources.constants import CONST_O, CONST_X
 
 
 class Board:
-    def __init__(self, board_size=3, board_id=""):
+    def __init__(self, board_size=3, board_id="", player_symbols=[]):
         self.board_size = board_size
         self.board_id = board_id
+        self.player_symbols = player_symbols
         self.board = []
         self.initalize_board()
+
+    def _set_player_symbols(self):
+        if len(self.player_symbols) == 0:
+            self.player_symbols = [CONST_O, CONST_X]
 
     def initalize_board(self):
         row_col_size = self.board_size
@@ -56,3 +62,15 @@ class Board:
                 if not col.is_set():
                     return False
         return True
+
+    def is_horizontal_win(self):
+        for row in self.board:
+            if self.list_has_match(row):
+                return row[0]
+        return False
+
+    def list_has_match(self, input_list):
+        result = input_list.count(input_list[0]) == len(input_list)
+        if result:
+            return input_list[0]
+        return False
