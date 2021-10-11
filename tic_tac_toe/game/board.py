@@ -1,4 +1,4 @@
-from ..resources.constants import CONST_O, CONST_X, CONST_BOARD_DEFAULT_CHAR
+from ..resources.constants import PLAYER_2_MARK, PLAYER_1_MARK, DEFAULT_MARK
 
 
 class Board:
@@ -14,11 +14,11 @@ class Board:
 
     def _set_player_symbols(self):
         if len(self.player_symbols) == 0:
-            self.player_symbols = [CONST_O, CONST_X]
+            self.player_symbols = [PLAYER_2_MARK, PLAYER_1_MARK]
 
     def _set_default_board_char(self):
         if not self.default_board_char:
-            self.default_board_char = CONST_BOARD_DEFAULT_CHAR
+            self.default_board_char = DEFAULT_MARK
 
     def initalize_board(self):
         row_col_size = self.board_size

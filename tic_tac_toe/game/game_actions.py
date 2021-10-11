@@ -1,5 +1,5 @@
 import random
-from ..resources.constants import CONST_O, CONST_X, CONST_GAME_MESSAGES
+from ..resources.constants import PLAYER_2_MARK, PLAYER_1_MARK, GAME_MESSAGES
 from .board import Board
 
 
@@ -7,7 +7,7 @@ class GameActions:
 
     def __init__(self, game_id="", custom_messages={}):
         self.game_id = game_id
-        self.messages = custom_messages | CONST_GAME_MESSAGES
+        self.messages = custom_messages | GAME_MESSAGES
         self.board = None
         self.board_size = 0
         self.is_game_running = False
@@ -29,16 +29,16 @@ class GameActions:
         self.current_player = self.get_random_player()
 
     def get_random_player(self):
-        return random.choice([CONST_X, CONST_O])
+        return random.choice([PLAYER_1_MARK, PLAYER_2_MARK])
 
     def get_current_player(self):
         return self.current_player
 
     def switch_player(self):
-        if self.current_player == CONST_X:
-            self.current_player = CONST_O
+        if self.current_player == PLAYER_1_MARK:
+            self.current_player = PLAYER_2_MARK
         else:
-            self.current_player = CONST_X
+            self.current_player = PLAYER_1_MARK
 
     def get_game_board(self):
         return self.board.get_board_string()
