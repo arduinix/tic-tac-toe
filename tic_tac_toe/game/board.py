@@ -2,13 +2,13 @@ from ..resources.constants import PLAYER_2_MARK, PLAYER_1_MARK, DEFAULT_MARK
 
 
 class Board:
-    def __init__(self, board_size=3, board_id="", player_symbols=[], default_board_char=None):
+    def __init__(self, board_size=3, board_id="", player_symbols=[], default_mark=None):
         self.board_size = board_size
         self.board_id = board_id
         self.player_symbols = player_symbols
-        self.default_board_char = default_board_char
+        self.default_mark = default_mark
         self.board = []
-        self._set_default_board_char()
+        self._set_default_mark()
         self._set_player_symbols()
         self.initalize_board()
 
@@ -16,9 +16,9 @@ class Board:
         if len(self.player_symbols) == 0:
             self.player_symbols = [PLAYER_2_MARK, PLAYER_1_MARK]
 
-    def _set_default_board_char(self):
-        if not self.default_board_char:
-            self.default_board_char = DEFAULT_MARK
+    def _set_default_mark(self):
+        if not self.default_mark:
+            self.default_mark = DEFAULT_MARK
 
     def initalize_board(self):
         row_col_size = self.board_size
@@ -26,7 +26,7 @@ class Board:
         for i in range(row_col_size):
             col = []
             for j in range(row_col_size):
-                col.append(self.default_board_char)
+                col.append(self.default_mark)
             board.append(col)
         self.board = board
 
