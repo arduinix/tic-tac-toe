@@ -41,21 +41,6 @@ class TestBoard:
 
         assert board.is_board_full()
 
-    def test_check_win_horizontal(self):
-        board_size = 3
-        set_row = 1
-        set_value = 'X'
-        "Fill the board with a horizontal pattern and check if it is identified as a win"
-
-        board = Board(board_size=board_size)
-
-        for col in range(board_size):
-            board.set_cell(set_row, col, set_value)
-
-        print(board.get_board_string())
-
-        assert board.is_horizontal_win() == set_value
-
     def test_list_has_player_symbols(self):
         "Check if the list passed contains symbols of current players, indicating a marked cell"
 
