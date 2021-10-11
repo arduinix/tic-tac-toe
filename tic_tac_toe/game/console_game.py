@@ -6,7 +6,7 @@ class ConsoleGame(object):
 
     def __init__(self, game_id=""):
         self.play_game()
-    
+
     def play_game(self):
         print('Welcome to Tic Tac Toe!')
         game = GameActions()
@@ -31,7 +31,7 @@ class ConsoleGame(object):
                     print("The cell ({},{}) has already been played. Select another cell.".format(row, col))
 
             print('Player {} played row {}, col {}'.format(game.get_current_player(), row, col))
-            
+
             game.play_cell(int(row), int(col))
             print(game.board.get_board_string())
             game.switch_player()
