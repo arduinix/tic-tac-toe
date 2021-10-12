@@ -16,7 +16,7 @@ class WinDetector:
         for row in self.board.board:
             if self.board.list_has_player_symbols(row):
                 return row[0]
-        return False
+        return None
 
     def is_vertical_win(self):
         for row in self.transpose_2d_list(self.board):
