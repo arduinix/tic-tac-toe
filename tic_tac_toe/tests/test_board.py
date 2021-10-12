@@ -41,14 +41,6 @@ class TestBoard:
 
         assert board.is_board_full()
 
-    def test_list_has_player_symbols(self):
-        "Check if the list passed contains symbols of current players, indicating a marked cell"
-
-        board = Board()
-
-        assert board.list_has_player_symbols(['X', 'X', 'X']) == 'X'
-        assert board.list_has_player_symbols(['X', 'X', 'O']) is None
-
     def test_is_cell_set(self):
         "Set a cell and verify that it is set"
 

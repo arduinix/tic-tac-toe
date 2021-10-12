@@ -5,6 +5,13 @@ from .constants import TEST_SET_MARK, TEST_BOARD_SIZE
 set_value = TEST_SET_MARK
 
 
+def test_list_has_player_symbols(WinDetectorFixture, Board3x3Fixture):
+    "Check if the list passed contains symbols of current players"
+
+    assert WinDetectorFixture(Board3x3Fixture).list_has_player_symbols(['X', 'X', 'X']) == 'X'
+    assert WinDetectorFixture(Board3x3Fixture).list_has_player_symbols(['X', 'X', 'O']) is None
+
+
 def test_transpose_2d_list(WinDetectorFixture):
     "Verify that a 2d list is transposed properly"
 

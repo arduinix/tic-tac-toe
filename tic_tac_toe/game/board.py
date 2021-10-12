@@ -72,10 +72,3 @@ class Board:
         if self._cell_is_set(self.board[row][col]):
             return True
         return False
-
-    def list_has_player_symbols(self, input_list):
-        result = input_list.count(input_list[0])
-
-        if input_list[0] in self.player_symbols and result == len(input_list):
-            return input_list[0]
-        return None

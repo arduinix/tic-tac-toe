@@ -1,6 +1,7 @@
 class WinDetector:
     def __init__(self, board):
         self.board = board
+        self.player_symbols = self.board.player_symbols
 
     @staticmethod
     def transpose_2d_list(input_list):
@@ -12,15 +13,22 @@ class WinDetector:
             transposed_list.append(row)
         return transposed_list
 
+    def list_has_player_symbols(self, input_list):
+        result = input_list.count(input_list[0])
+
+        if input_list[0] in self.player_symbols and result == len(input_list):
+            return input_list[0]
+        return None
+
     def is_horizontal_win(self):
         for row in self.board.board:
-            if self.board.list_has_player_symbols(row):
+            if self.list_has_player_symbols(row):
                 return row[0]
         return None
 
     def is_vertical_win(self):
         for row in self.transpose_2d_list(self.board.board):
-            if self.board.list_has_player_symbols(row):
+            if self.list_has_player_symbols(row):
                 return row[0]
         return None
 
@@ -28,7 +36,7 @@ class WinDetector:
         top_diagonal_list = []
         for index in range(self.board.board_size):
             top_diagonal_list.append(self.board.board[index][index])
-        winner = self.board.list_has_player_symbols(top_diagonal_list)
+        winner = self.list_has_player_symbols(top_diagonal_list)
         if winner:
             return winner
         return None
@@ -39,7 +47,7 @@ class WinDetector:
         for col in range(self.board.board_size):
             bottom_diagonal_list.append(self.board.board[row - 1][col])
             row -= 1
-        winner = self.board.list_has_player_symbols(bottom_diagonal_list)
+        winner = self.list_has_player_symbols(bottom_diagonal_list)
         if winner:
             return winner
         return False
