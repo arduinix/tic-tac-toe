@@ -1,37 +1,36 @@
 from tic_tac_toe.game import WinDetector
 from pytest_factoryboy import register
 from .factories.win_detector import WinDetectorFactory
+from .factories.board import BoardFactory
 
 
 register(WinDetectorFactory)
+register(BoardFactory)
 
 
 def test_transpose_2d_list():
-    "Verify that a 2 list is transposed properly"
-
-    win_detector = WinDetector
+    "Verify that a 2d list is transposed properly"
 
     input_list = [['A', 'B'], ['C', 'D']]
     expected_list = [['A', 'C'], ['B', 'D']]
 
-    print(win_detector.transpose_2d_list(input_list))
+    assert WinDetector.transpose_2d_list(input_list) == expected_list
 
-    assert win_detector.transpose_2d_list(input_list) == expected_list
 
-    # def test_check_win_horizontal(self):
-    #     board_size = 3
-    #     set_row = 1
-    #     set_value = 'X'
-    #     "Fill the board with a horizontal pattern and check if it is identified as a win"
+def test_check_win_horizontal():
+    board_size = 3
+    set_row = 1
+    set_value = 'X'
+    "Fill the board with a horizontal pattern and check if it is identified as a win"
 
-    #     board = Board(board_size=board_size)
+    board = BoardFactory(board_size=board_size)
+    ###this neeeds to be moved to the BoardFactory Class*************************
+    for col in range(board_size):
+        board.set_cell(set_row, col, set_value)
 
-    #     for col in range(board_size):
-    #         board.set_cell(set_row, col, set_value)
+    win_detector = WinDetector(board)
 
-    #     print(board.get_board_string())
-
-    #     assert board.is_horizontal_win() == set_value
+    assert win_detector.is_horizontal_win() == set_value
 
     # def test_check_win_vertical(self):
     #     board_size = 3

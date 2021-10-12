@@ -13,8 +13,8 @@ class WinDetector:
         return transposed_list
 
     def is_horizontal_win(self):
-        for row in self.board:
-            if self.list_has_player_symbols(row):
+        for row in self.board.board:
+            if self.board.list_has_player_symbols(row):
                 return row[0]
         return False
 
