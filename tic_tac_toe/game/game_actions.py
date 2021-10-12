@@ -12,6 +12,7 @@ class GameActions:
         self.board_size = 0
         self.is_game_running = False
         self.current_player = None
+        self.win_detector = None
 
     def start_game(self, board_size):
         self.board = Board(board_size=board_size)
