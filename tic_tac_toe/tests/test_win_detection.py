@@ -1,8 +1,11 @@
-from tic_tac_toe.game import WinDetector
+from tic_tac_toe.game import WinDetector, Board
 from .constants import TEST_SET_MARK, TEST_BOARD_SIZE
 
 
 set_value = TEST_SET_MARK
+_B = ' '
+_X = 'X'
+_O = 'O'
 
 
 def test_list_has_player_symbols(WinDetectorFixture, Board3x3Fixture):
@@ -21,10 +24,14 @@ def test_transpose_2d_list(WinDetectorFixture):
     assert WinDetectorFixture.transpose_2d_list(input_list) == expected_list
 
 
-def test_check_win_horizontal(BoardHorizontalWinFixture, WinDetectorFixture):
+def test_returns_X_when_the_board_has_a_horizontal_win_state_for_player_with_X_mark():
     "Fill the board with a horizontal pattern and check if it is identified as a win"
+    test_board = [[_X, _X, _X],
+                  [_B, _B, _B],
+                  [_B, _B, _B]]
+    board_with_horizontal_win = Board(board=test_board)
 
-    assert WinDetectorFixture(BoardHorizontalWinFixture).is_horizontal_win() == set_value
+    assert WinDetector(board_with_horizontal_win).is_horizontal_win() == _X
 
 
 def test_check_win_vertical(BoardVerticalWinFixture, WinDetectorFixture):
