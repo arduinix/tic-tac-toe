@@ -1,6 +1,10 @@
 from tic_tac_toe.game import Board
 from .constants import EXPECTED_GAME_BOARD_STRING
 
+_B = ' '
+_X = 'X'
+_O = 'O'
+
 
 class TestBoard:
     def test_get_formatted_board_string(self):
@@ -48,3 +52,27 @@ class TestBoard:
         board.set_cell(0, 0, 'X')
 
         assert board.is_cell_set(0, 0) is True
+
+    def test_default_board_is_an_emptuy_board(self):
+        test_board = [[_B, _B, _B],
+                      [_B, _B, _B],
+                      [_B, _B, _B]]
+        board = Board()
+
+        assert board.get_board() == test_board
+
+    def test_can_set_a_default_board_with_an_empty_state(self):
+        test_board = [[_B, _B, _B],
+                      [_B, _B, _B],
+                      [_B, _B, _B]]
+        board = Board(board=test_board)
+
+        assert board.get_board() == test_board
+
+    def test_can_set_a_default_board_with_an_any_state(self):
+        test_board = [[_X, _O, _X],
+                      [_X, _O, _X],
+                      [_O, _X, _O]]
+        board = Board(board=test_board)
+
+        assert board.get_board() == test_board
