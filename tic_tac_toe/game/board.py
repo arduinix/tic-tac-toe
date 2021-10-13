@@ -2,23 +2,18 @@ from ..resources.constants import PLAYER_2_MARK, PLAYER_1_MARK, DEFAULT_MARK
 
 
 class Board:
-    def __init__(self, board_size=3, board_id="", player_symbols=[], default_mark=None):
+    def __init__(self, board_size=3, board_id="", player_symbols=[], default_mark=DEFAULT_MARK):
         self.board_size = board_size
         self.board_id = board_id
         self.player_symbols = player_symbols
         self.default_mark = default_mark
         self.board = []
-        self._set_default_mark()
         self._set_player_symbols()
         self.initalize_board()
 
     def _set_player_symbols(self):
         if len(self.player_symbols) == 0:
             self.player_symbols = [PLAYER_2_MARK, PLAYER_1_MARK]
-
-    def _set_default_mark(self):
-        if not self.default_mark:
-            self.default_mark = DEFAULT_MARK
 
     def initalize_board(self):
         row_col_size = self.board_size
