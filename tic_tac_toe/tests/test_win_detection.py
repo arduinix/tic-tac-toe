@@ -8,22 +8,6 @@ _X = 'X'
 _O = 'O'
 
 
-def test_list_has_player_symbols(WinDetectorFixture, Board3x3Fixture):
-    "Check if the list passed contains symbols of current players"
-
-    assert WinDetectorFixture(Board3x3Fixture).list_has_player_symbols(['X', 'X', 'X']) == 'X'
-    assert WinDetectorFixture(Board3x3Fixture).list_has_player_symbols(['X', 'X', 'O']) is None
-
-
-def test_transpose_2d_list(WinDetectorFixture):
-    "Verify that a 2d list is transposed properly"
-
-    input_list = [['A', 'B'], ['C', 'D']]
-    expected_list = [['A', 'C'], ['B', 'D']]
-
-    assert WinDetectorFixture.transpose_2d_list(input_list) == expected_list
-
-
 def test_win_detector_detects_horizontal_win():
     test_board = [[_X, _X, _X],
                   [_B, _B, _B],
