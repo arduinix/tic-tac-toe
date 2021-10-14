@@ -41,8 +41,8 @@ class GameActions:
         else:
             self.current_player = PLAYER_1_MARK
 
-    def get_game_board(self):
-        return self.board.get_board_string()
-
     def play_cell(self, row, col):
         self.board.set_cell(row, col, self.current_player)
+
+    def get_game_board(self):
+        return self.board

@@ -43,7 +43,7 @@ class TestGameActions:
 
         ttt_game = GameActions()
         ttt_game.start_game(board_size=board_size)
-        board_string = ttt_game.get_game_board()
+        board_string = ttt_game.get_game_board().get_board_string()
         current_player = ttt_game.get_current_player()
         ttt_game.play_cell(played_row, played_col)
 

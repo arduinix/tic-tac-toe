@@ -38,6 +38,7 @@ class ConsoleGame(object):
 
             if game.board.is_board_full():
                 print(game.get_message('board_full'))
-            winner = WinDetector(game.board).is_win()
-            if winner:
-                print('Player {} wins!'.format(winner))
+            win_detector = WinDetector(board=game.get_game_board())
+
+            if win_detector.is_win():
+                print('Player {} wins!'.format(win_detector.get_winner()))
