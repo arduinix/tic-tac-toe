@@ -1,5 +1,9 @@
 from tic_tac_toe.game import GameActions
-from .constants import EXPECTED_GAME_BOARD_STRING
+
+expected_board_string = "-+-+-\n | | " \
+                        "\n-+-+-\n | | "\
+                        "\n-+-+-\n | | "\
+                        "\n-+-+-\n"
 
 
 class TestGameActions:
@@ -43,9 +47,9 @@ class TestGameActions:
         current_player = ttt_game.get_current_player()
         ttt_game.play_cell(played_row, played_col)
 
-        assert board_string == EXPECTED_GAME_BOARD_STRING
+        assert board_string == expected_board_string
         assert ttt_game.is_game_running is True
-        assert ttt_game.board.get_cell_value(played_row, played_col) == current_player
+        assert ttt_game.board.get_cell_mark(played_row, played_col) == current_player
 
         ttt_game.stop_game()
         assert ttt_game.is_game_running is False

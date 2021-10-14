@@ -1,7 +1,7 @@
 class WinDetector:
     def __init__(self, board):
         self.board = board
-        self.player_symbols = self.board.player_symbols
+        self.player_symbols = self.board.get_player_marks()
         self.winner = None
 
     @staticmethod
@@ -35,7 +35,7 @@ class WinDetector:
 
     def _get_top_diagonal_win(self):
         top_diagonal_list = []
-        for index in range(self.board.board_size):
+        for index in range(self.board.get_size()):
             top_diagonal_list.append(self.board.board[index][index])
         winner = self._list_has_player_symbols(top_diagonal_list)
         if winner:
@@ -44,8 +44,8 @@ class WinDetector:
 
     def _get_bottom_diagonal_win(self):
         bottom_diagonal_list = []
-        row = self.board.board_size
-        for col in range(self.board.board_size):
+        row = self.board.get_size()
+        for col in range(self.board.get_size()):
             bottom_diagonal_list.append(self.board.board[row - 1][col])
             row -= 1
         winner = self._list_has_player_symbols(bottom_diagonal_list)

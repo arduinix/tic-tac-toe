@@ -1,11 +1,9 @@
 from tic_tac_toe.game import Board
 
-expected_board_string = \
-    "-+-+-\n | | " \
-    "\n-+-+-\n | | "\
-    "\n-+-+-\n | | "\
-    "\n-+-+-\n"
- 
+expected_board_string = "-+-+-\n | | " \
+                        "\n-+-+-\n | | "\
+                        "\n-+-+-\n | | "\
+                        "\n-+-+-\n"
 _B = ' '
 _X = 'X'
 _O = 'O'
@@ -80,3 +78,11 @@ def test_is_cell_set_when_setting_a_cell():
     board.set_cell(0, 0, _X)
 
     assert board.is_cell_set(0, 0) is True
+
+
+def test_get_player_marks_returns_expected_player_marks():
+    player_marks = [_X, _O]
+
+    board_with_expected_marks = Board(player_marks=player_marks)
+
+    assert board_with_expected_marks.get_player_marks() == player_marks

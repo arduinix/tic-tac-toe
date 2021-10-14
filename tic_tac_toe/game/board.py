@@ -63,6 +63,9 @@ class Board:
         if self._cell_is_set(self.board[row][col]):
             return True
         return False
-    
+
     def get_size(self):
         return self.size
+
+    def get_player_marks(self):
+        return self.player_marks
