@@ -1,8 +1,5 @@
 from tic_tac_toe.game import WinDetector, Board
-from .constants import TEST_SET_MARK, TEST_BOARD_SIZE
 
-
-set_value = TEST_SET_MARK
 _B = ' '
 _X = 'X'
 _O = 'O'

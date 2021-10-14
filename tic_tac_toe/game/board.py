@@ -2,31 +2,26 @@ from ..resources.constants import PLAYER_2_MARK, PLAYER_1_MARK, DEFAULT_MARK
 
 
 class Board:
-    def __init__(self, board_size=3, board=[], player_symbols=[], default_mark=DEFAULT_MARK):
-        self.board_size = board_size
-        self.player_symbols = player_symbols
+    def __init__(self, size=3, board=[], player_marks=[PLAYER_2_MARK, PLAYER_1_MARK], default_mark=DEFAULT_MARK):
+        self.size = size
+        self.player_marks = player_marks
         self.default_mark = default_mark
-        self.board = self.initalize_board() if board == [] else board
-        self._set_player_symbols()
+        self.board = self._initalize_board() if board == [] else board
 
-    def _set_player_symbols(self):
-        if len(self.player_symbols) == 0:
-            self.player_symbols = [PLAYER_2_MARK, PLAYER_1_MARK]
-
-    def initalize_board(self):
-        row_col_size = self.board_size
+    def _initalize_board(self):
+        row_col_size = self.size
         board = []
         for i in range(row_col_size):
             col = []
             for j in range(row_col_size):
                 col.append(self.default_mark)
             board.append(col)
-        self.board = board
+        return board
 
     def get_board_string(self):
         board = self.board
         board_string = ''
-        board_string += self.generate_row_delimeter()
+        board_string += self._generate_row_delimeter()
         for row in range(len(board)):
             for col in range(len(board[row])):
                 board_string += board[row][col]
@@ -34,19 +29,22 @@ class Board:
                     board_string += '|'
                 else:
                     board_string += '\n'
-            board_string += self.generate_row_delimeter()
+            board_string += self._generate_row_delimeter()
         return board_string
 
-    def generate_row_delimeter(self):
+    def get_board(self):
+        return self.board
+
+    def _generate_row_delimeter(self):
         seed_string = '-+'
-        delimeter_string = seed_string * (self.board_size - 1)
+        delimeter_string = seed_string * (self.size - 1)
         delimeter_string += '-\n'
         return delimeter_string
 
     def set_cell(self, row, col, value):
         self.board[row][col] = value
 
-    def get_cell_value(self, row, col):
+    def get_cell_mark(self, row, col):
         return self.board[row][col]
 
     def is_board_full(self):
@@ -57,7 +55,7 @@ class Board:
         return True
 
     def _cell_is_set(self, cell):
-        if cell in self.player_symbols:
+        if cell in self.player_marks:
             return True
         return False
 
@@ -65,3 +63,6 @@ class Board:
         if self._cell_is_set(self.board[row][col]):
             return True
         return False
+    
+    def get_size(self):
+        return self.size
