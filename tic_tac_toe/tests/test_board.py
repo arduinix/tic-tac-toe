@@ -5,7 +5,7 @@ expected_board_string = \
     "\n-+-+-\n | | "\
     "\n-+-+-\n | | "\
     "\n-+-+-\n"
-    
+ 
 _B = ' '
 _X = 'X'
 _O = 'O'
