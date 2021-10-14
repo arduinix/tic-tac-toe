@@ -15,7 +15,8 @@ def test_win_detector_detects_horizontal_win():
 
     board_with_horizontal_win = Board(board=test_board)
 
-    assert WinDetector(board_with_horizontal_win).is_horizontal_win() == _X
+    assert WinDetector(board_with_horizontal_win).is_win() is True
+    assert WinDetector(board_with_horizontal_win).get_winner() == _X
 
 
 def test_win_detector_detects_vertical_win():
@@ -25,7 +26,8 @@ def test_win_detector_detects_vertical_win():
 
     board_with_vertical_win = Board(board=test_board)
 
-    assert WinDetector(board_with_vertical_win).is_vertical_win() == _O
+    assert WinDetector(board_with_vertical_win).is_win() is True
+    assert WinDetector(board_with_vertical_win).get_winner() == _O
 
 
 def test_win_detector_detects_top_diagonal_win():
@@ -35,7 +37,8 @@ def test_win_detector_detects_top_diagonal_win():
 
     board_with_top_diagonal_win = Board(board=test_board)
 
-    assert WinDetector(board_with_top_diagonal_win).is_top_diagonal_win() == _X
+    assert WinDetector(board_with_top_diagonal_win).is_win() is True
+    assert WinDetector(board_with_top_diagonal_win).get_winner() == _X
 
 
 def test_win_detector_detects_bottom_diagonal_win():
@@ -45,14 +48,5 @@ def test_win_detector_detects_bottom_diagonal_win():
 
     board_with_bottom_diagonal_win = Board(board=test_board)
 
-    assert WinDetector(board_with_bottom_diagonal_win).is_bottom_diagonal_win() == _O
-
-
-def test_is_win_when_passing_test_board():
-    test_board = [[_X, _X, _O],
-                  [_B, _O, _B],
-                  [_O, _O, _X]]
-
-    board_with_win = Board(board=test_board)
-
-    assert WinDetector(board_with_win).is_win() == _O
+    assert WinDetector(board_with_bottom_diagonal_win).is_win() is True
+    assert WinDetector(board_with_bottom_diagonal_win).get_winner() == _O
