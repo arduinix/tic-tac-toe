@@ -1,8 +1,11 @@
-from tic_tac_toe.game import WinDetector
+from tic_tac_toe.game import WinDetector, Board
 from .constants import TEST_SET_MARK, TEST_BOARD_SIZE
 
 
 set_value = TEST_SET_MARK
+_B = ' '
+_X = 'X'
+_O = 'O'
 
 
 def test_list_has_player_symbols(WinDetectorFixture, Board3x3Fixture):
@@ -21,31 +24,51 @@ def test_transpose_2d_list(WinDetectorFixture):
     assert WinDetectorFixture.transpose_2d_list(input_list) == expected_list
 
 
-def test_check_win_horizontal(BoardHorizontalWinFixture, WinDetectorFixture):
-    "Fill the board with a horizontal pattern and check if it is identified as a win"
+def test_win_detector_detects_horizontal_win():
+    test_board = [[_X, _X, _X],
+                  [_B, _B, _B],
+                  [_B, _B, _B]]
 
-    assert WinDetectorFixture(BoardHorizontalWinFixture).is_horizontal_win() == set_value
+    board_with_horizontal_win = Board(board=test_board)
 
-
-def test_check_win_vertical(BoardVerticalWinFixture, WinDetectorFixture):
-    "Fill the board with a vertical pattern and check if it is identified as a win"
-
-    assert WinDetectorFixture(BoardVerticalWinFixture).is_vertical_win() == set_value
+    assert WinDetector(board_with_horizontal_win).is_horizontal_win() == _X
 
 
-def test_is_top_diagonal_win(BoardTopDiagonalWinFixture, WinDetectorFixture):
-    "Fill the top diagonal of the board and check for a win"
+def test_win_detector_detects_vertical_win():
+    test_board = [[_X, _O, _O],
+                  [_B, _O, _B],
+                  [_X, _O, _B]]
 
-    assert WinDetectorFixture(BoardTopDiagonalWinFixture).is_top_diagonal_win() == set_value
+    board_with_vertical_win = Board(board=test_board)
 
-
-def test_is_bottom_diagonal_win(BoardBottomDiagonalWinFixture, WinDetectorFixture):
-    "Fill the bottom diagonal of the board and check for a win"
-
-    assert WinDetectorFixture(BoardBottomDiagonalWinFixture).is_bottom_diagonal_win() == set_value
+    assert WinDetector(board_with_vertical_win).is_vertical_win() == _O
 
 
-def test_check_is_win(BoardBottomDiagonalWinFixture, WinDetectorFixture):
-    "Fill the bottom diagonal of the board and check for a win"
+def test_win_detector_detects_top_diagonal_win():
+    test_board = [[_X, _O, _O],
+                  [_B, _X, _B],
+                  [_B, _O, _X]]
 
-    assert WinDetectorFixture(BoardBottomDiagonalWinFixture).is_win() == set_value
+    board_with_top_diagonal_win = Board(board=test_board)
+
+    assert WinDetector(board_with_top_diagonal_win).is_top_diagonal_win() == _X
+
+
+def test_win_detector_detects_bottom_diagonal_win():
+    test_board = [[_X, _X, _O],
+                  [_B, _O, _B],
+                  [_O, _O, _X]]
+
+    board_with_bottom_diagonal_win = Board(board=test_board)
+
+    assert WinDetector(board_with_bottom_diagonal_win).is_bottom_diagonal_win() == _O
+
+
+def test_is_win_when_passing_test_board():
+    test_board = [[_X, _X, _O],
+                  [_B, _O, _B],
+                  [_O, _O, _X]]
+
+    board_with_win = Board(board=test_board)
+
+    assert WinDetector(board_with_win).is_win() == _O
