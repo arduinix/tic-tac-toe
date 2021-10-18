@@ -1,145 +1,88 @@
 from tic_tac_toe.game import Board
-from .constants import EXPECTED_GAME_BOARD_STRING
+
+expected_board_string = "-+-+-\n | | " \
+                        "\n-+-+-\n | | "\
+                        "\n-+-+-\n | | "\
+                        "\n-+-+-\n"
+_B = ' '
+_X = 'X'
+_O = 'O'
 
 
-class TestBoard:
-    def test_get_formatted_board_string(self):
-        "An empty, formatted Tic Tac Toe board should be returned"
+def test_get_board_returns_passed_in_board():
+    test_board = [[_X, _X, _X],
+                  [_B, _B, _B],
+                  [_B, _B, _B]]
 
-        board_string = Board(board_size=3).get_board_string()
-        print(board_string)
+    board_with_board_set = Board(board=test_board)
 
-        assert board_string == EXPECTED_GAME_BOARD_STRING
+    assert board_with_board_set.get_board() == test_board
 
-    def test_set_cell(self):
-        set_value = 'X'
-        set_row = 2
-        set_col = 2
-        "Set a cell on the board and verify that the cell is set"
 
-        board = Board()
-        board.set_cell(set_row, set_col, set_value)
+def test_get_board_string_returns_expected_string_for_3x3_board():
+    board_string = Board(size=3).get_board_string()
 
-        assert board.get_cell_value(set_row, set_col) == set_value
+    assert board_string == expected_board_string
 
-    def test_get_board_size(self):
-        specified_board_size = 9
-        "Verify that the size of the board is properly returned"
 
-        board = Board(board_size=specified_board_size)
+def test_set_a_cell_and_verify_cell_is_set_true():
+    set_row = 2
+    set_col = 2
 
-        assert board.board_size == specified_board_size
+    board = Board()
+    board.set_cell(set_row, set_col, _X)
 
-    def test_check_board_is_full(self):
-        set_value = 'X'
-        "Fill the board and verify that the board shows as full"
+    assert board.is_cell_set(set_row, set_col) is True
 
-        board = Board()
-        for row in range(board.board_size):
-            for col in range(board.board_size):
-                board.set_cell(row, col, set_value)
 
-        assert board.is_board_full()
+def test_set_a_cell_and_get_its_mark():
+    set_row = 2
+    set_col = 2
 
-    def test_check_win_horizontal(self):
-        board_size = 3
-        set_row = 1
-        set_value = 'X'
-        "Fill the board with a horizontal pattern and check if it is identified as a win"
+    board = Board()
+    board.set_cell(set_row, set_col, _X)
 
-        board = Board(board_size=board_size)
+    assert board.get_cell_mark(set_row, set_col) == _X
 
-        for col in range(board_size):
-            board.set_cell(set_row, col, set_value)
 
-        print(board.get_board_string())
+def test_get_board_size_returns_set_board_size():
+    specified_board_size = 4
 
-        assert board.is_horizontal_win() == set_value
+    board_with_set_size = Board(size=specified_board_size)
 
-    def test_list_has_wins(self):
-        "Check if the list_has_match method returns the desired result"
+    assert board_with_set_size.get_size() == specified_board_size
 
-        board = Board()
 
-        assert board.list_has_wins(['X', 'X', 'X']) == 'X'
-        assert board.list_has_wins(['X', 'X', 'O']) is False
+def test_is_board_full_true_when_board_full():
+    test_board = [[_X, _X, _X],
+                  [_O, _O, _X],
+                  [_O, _X, _O]]
 
-    def test_transpose_2d_list(self):
-        "Verify that a 2 list is transposed properly"
-        board = Board()
+    full_board = Board(board=test_board)
 
-        input_list = [['A', 'B'], ['C', 'D']]
-        expected_list = [['A', 'C'], ['B', 'D']]
+    assert full_board.is_board_full()
 
-        print(board.transpose_2d_list(input_list))
 
-        assert board.transpose_2d_list(input_list) == expected_list
+def test_is_board_full_false_when_board_not_full():
+    test_board = [[_X, _X, _X],
+                  [_O, _B, _X],
+                  [_O, _X, _O]]
 
-    def test_check_win_vertical(self):
-        board_size = 3
-        set_col = 1
-        set_value = 'X'
-        "Fill the board with a vertical pattern and check if it is identified as a win"
+    non_full_board = Board(board=test_board)
 
-        board = Board(board_size=board_size)
+    assert non_full_board.is_board_full() is False
 
-        for row in range(board_size):
-            board.set_cell(row, set_col, set_value)
 
-        print(board.get_board_string())
+def test_is_cell_set_when_setting_a_cell():
+    board = Board()
+    board.set_cell(0, 0, _X)
 
-        assert board.is_vertical_win() == set_value
+    assert board.is_cell_set(0, 0) is True
 
-    def test_is_top_diagonal_win(self):
-        board_size = 3
-        set_value = 'X'
-        "Fill the top diagonal of the board and check for a win"
 
-        board = Board(board_size=board_size)
+def test_get_player_marks_returns_expected_player_marks():
+    player_marks = [_X, _O]
 
-        for index in range(board_size):
-            board.set_cell(index, index, set_value)
+    board_with_expected_marks = Board(player_marks=player_marks)
 
-        print(board.get_board_string())
-
-        assert board.is_top_diagonal_win() == set_value
-
-    def test_is_bottom_diagonal_win(self):
-        board_size = 4
-        set_value = 'X'
-        "Fill the bottom diagonal of the board and check for a win"
-
-        board = Board(board_size=board_size)
-
-        row = board_size
-        for col in range(board_size):
-            board.set_cell(row - 1, col, set_value)
-            row -= 1
-
-        print(board.get_board_string())
-
-        assert board.is_bottom_diagonal_win() == set_value
-
-    def test_check_is_win(self):
-        board_size = 4
-        set_value = 'X'
-        "Fill the bottom diagonal of the board and check for a win"
-
-        board = Board(board_size=board_size)
-
-        row = board_size
-        for col in range(board_size):
-            board.set_cell(row - 1, col, set_value)
-            row -= 1
-
-        print(board.get_board_string())
-
-        assert board.is_win() == set_value
-
-    def test_is_cell_set(self):
-        "Set a cell and verify that it is set"
-
-        board = Board()
-        board.set_cell(0, 0, 'X')
-
-        assert board.is_cell_set(0, 0) is True
+    assert board_with_expected_marks.get_player_marks() == player_marks

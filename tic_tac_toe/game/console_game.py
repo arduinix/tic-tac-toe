@@ -1,5 +1,5 @@
-from .board import Board
 from .game_actions import GameActions
+from .win_detection import WinDetector
 
 
 class ConsoleGame(object):
@@ -18,7 +18,7 @@ class ConsoleGame(object):
 
         print(game.board.get_board_string())
 
-        while not game.board.is_board_full() and not game.board.is_win():
+        while not game.board.is_board_full() and not WinDetector(game.board).is_win():
             print("Player {}'s turn".format(game.get_current_player()))
 
             input_accepted = False
@@ -38,6 +38,7 @@ class ConsoleGame(object):
 
             if game.board.is_board_full():
                 print(game.get_message('board_full'))
+            win_detector = WinDetector(board=game.get_game_board())
 
-            if game.board.is_win():
-                print('Player {} wins!'.format(game.board.is_win()))
+            if win_detector.is_win():
+                print('Player {} wins!'.format(win_detector.get_winner()))

@@ -12,9 +12,10 @@ class GameActions:
         self.board_size = 0
         self.is_game_running = False
         self.current_player = None
+        self.win_detector = None
 
     def start_game(self, board_size):
-        self.board = Board(board_size=board_size)
+        self.board = Board(size=board_size)
         self.is_game_running = True
         self.set_starting_player()
 
@@ -40,8 +41,8 @@ class GameActions:
         else:
             self.current_player = PLAYER_1_MARK
 
-    def get_game_board(self):
-        return self.board.get_board_string()
-
     def play_cell(self, row, col):
         self.board.set_cell(row, col, self.current_player)
+
+    def get_game_board(self):
+        return self.board
