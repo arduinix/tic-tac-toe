@@ -47,3 +47,13 @@ def test_win_detector_detects_bottom_diagonal_win():
 
     assert WinDetector(board_with_bottom_diagonal_win).is_win() is True
     assert WinDetector(board_with_bottom_diagonal_win).get_winner() == _O
+
+
+def test_win_detector_returns_false_when_no_win_exits():
+    test_board = [[_X, _X, _O],
+                  [_B, _O, _B],
+                  [_B, _O, _X]]
+
+    board_with_bottom_diagonal_win = Board(board=test_board)
+
+    assert WinDetector(board_with_bottom_diagonal_win).is_win() is False
