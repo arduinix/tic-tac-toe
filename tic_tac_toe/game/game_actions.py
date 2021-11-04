@@ -42,7 +42,32 @@ class GameActions:
             self.current_player = PLAYER_1_MARK
 
     def play_cell(self, row, col):
-        self.board.set_cell(row, col, self.current_player)
+        input_validation_response = self._check_input_valid(row, col)
+        if input_validation_response == 'accepted':
+            self.board.set_cell(row, col, self.current_player)
+        return input_validation_response
 
     def get_game_board(self):
         return self.board
+
+    def _check_input_valid(self, row, col):
+        cell_not_on_board = self._generate_cell_not_on_board_message(row, col)
+        if cell_not_on_board:
+            return cell_not_on_board
+
+        cell_already_played = self._generate_cell_already_played_message(row, col)
+        if cell_already_played:
+            return cell_already_played
+
+        return 'accepted'
+
+    def _generate_cell_already_played_message(self, row, col):
+        if self.board.is_cell_set(row, col):
+            return "The cell ({},{}) has already been played. Select another cell.".format(row, col)
+        return None
+
+    def _generate_cell_not_on_board_message(self, row, col):
+        if not self.board.is_cell_on_board(row, col):
+            return "The cell ({r},{c}) is not on the board select another cell with a row,col from 0 to "\
+                   "{s} in the format (0,0) to ({s},{s}).".format(r=row, c=col, s=self.board.size - 1)
+        return None

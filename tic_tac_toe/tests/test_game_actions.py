@@ -53,3 +53,27 @@ class TestGameActions:
 
         ttt_game.stop_game()
         assert ttt_game.is_game_running is False
+
+    def test_acceptable_played_cell_is_accepted(self):
+        game = GameActions()
+        game.start_game(board_size=3)
+        result = game.play_cell(1, 1)
+
+        assert result == 'accepted'
+
+    def test_already_played_cell_is_not_accepted(self):
+        game = GameActions()
+        game.start_game(board_size=3)
+        game.play_cell(1, 1)
+
+        result = game.play_cell(1, 1)
+
+        assert result == "The cell (1,1) has already been played. Select another cell."
+
+    def test_playing_cell_not_on_board_throws_error(self):
+        game = GameActions()
+        game.start_game(board_size=3)
+        result = game.play_cell(4, 4)
+
+        assert result == "The cell (4,4) is not on the board select another cell with a row,col from 0 to "\
+            "2 in the format (0,0) to (2,2)."

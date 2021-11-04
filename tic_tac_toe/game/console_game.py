@@ -21,18 +21,15 @@ class ConsoleGame(object):
         while not game.board.is_board_full() and not WinDetector(game.board).is_win():
             print("Player {}'s turn".format(game.get_current_player()))
 
-            input_accepted = False
-            while not input_accepted:
+            result = ""
+            while result != 'accepted':
                 player_turn = input(game.get_message('coordinate_entry'))
                 row, col = player_turn.split(',')
-                if not game.board.is_cell_set(int(row), int(col)):
-                    input_accepted = True
-                else:
-                    print("The cell ({},{}) has already been played. Select another cell.".format(row, col))
+                result = game.play_cell(int(row), int(col))
+                if not result == 'accepted':
+                    print(result)
 
             print('Player {} played row {}, col {}'.format(game.get_current_player(), row, col))
-
-            game.play_cell(int(row), int(col))
             print(game.board.get_board_string())
             game.switch_player()
 
