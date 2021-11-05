@@ -14,8 +14,9 @@ class GameActions:
         self.current_player = None
         self.win_detector = None
 
-    def start_game(self, board_size):
+    def start_game(self, board_size, game_type=1):
         self.board = Board(size=board_size)
+        self.game_type = game_type
         self.is_game_running = True
         self.set_starting_player()
 
@@ -45,6 +46,7 @@ class GameActions:
         input_validation_response = self._check_input_valid(row, col)
         if input_validation_response == 'accepted':
             self.board.set_cell(row, col, self.current_player)
+            self.switch_player()
         return input_validation_response
 
     def get_game_board(self):

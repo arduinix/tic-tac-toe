@@ -8,13 +8,14 @@ class ConsoleGame(object):
         self.play_game()
 
     def play_game(self):
-        print('Welcome to Tic Tac Toe!')
         game = GameActions()
-
+        print(game.get_message('welcome'))
+        game_type_input = input(game.get_message('game_type'))
+        game_type = int(game_type_input) if game_type_input != '' else 1
         board_size_input = input(game.get_message('board_size'))
         board_size = int(board_size_input) if board_size_input != '' else 3
 
-        game.start_game(board_size=board_size)
+        game.start_game(board_size=board_size, game_type=game_type)
 
         print(game.board.get_board_string())
 
@@ -31,7 +32,6 @@ class ConsoleGame(object):
 
             print('Player {} played row {}, col {}'.format(game.get_current_player(), row, col))
             print(game.board.get_board_string())
-            game.switch_player()
 
             if game.board.is_board_full():
                 print(game.get_message('board_full'))
