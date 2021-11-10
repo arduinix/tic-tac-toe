@@ -22,7 +22,7 @@ class ConsoleGame(object):
             print("Player {}'s turn".format(game.get_current_player()))
 
             result = ""
-            while result != 'accepted':
+            while not result == 'accepted':
                 player_turn = input(game.get_message('coordinate_entry'))
                 row, col = player_turn.split(',')
                 result = game.play_cell(int(row), int(col))
