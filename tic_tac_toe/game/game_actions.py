@@ -9,7 +9,7 @@ class GameActions:
     def __init__(self, game_id=""):
         self.game_id = game_id
         self.board = None
-        self.message = None
+        self.messager = Messager()
         self.board_size = 0
         self.is_game_running = False
         self.current_player = None

@@ -2,7 +2,7 @@ from ..resources.constants import GAME_MESSAGES
 
 
 class Messager:
-    def __init__(self, board_size, custom_messages={}):
+    def __init__(self, board_size=3, custom_messages={}):
         self.board_size = board_size
         self.messages = custom_messages | GAME_MESSAGES
 
