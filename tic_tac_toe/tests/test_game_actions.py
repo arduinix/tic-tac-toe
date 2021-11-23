@@ -7,14 +7,6 @@ expected_board_string = "-+-+-\n | | " \
 
 
 class TestGameActions:
-    def test_get_message(self):
-        expected_message = "Welcome to Tic Tac Toe!"
-        "Welcome message when starting a new game should read \"{}\"".format(expected_message)
-
-        actual_message = GameActions().get_message('welcome')
-
-        assert expected_message == actual_message
-
     def set_starting_player(self):
         "Get a random starting player from the game class"
 
@@ -53,3 +45,26 @@ class TestGameActions:
 
         ttt_game.stop_game()
         assert ttt_game.is_game_running is False
+
+    def test_acceptable_played_cell_is_accepted(self):
+        game = GameActions()
+        game.start_game(board_size=3)
+        result = game.play_cell(1, 1)
+
+        assert result == 'accepted'
+
+    def test_already_played_cell_is_not_accepted(self):
+        game = GameActions()
+        game.start_game(board_size=3)
+        game.play_cell(1, 1)
+
+        result = game.play_cell(1, 1)
+
+        assert result != 'accepted'
+
+    def test_playing_cell_not_on_board_throws_error(self):
+        game = GameActions()
+        game.start_game(board_size=3)
+        result = game.play_cell(4, 4)
+
+        assert result != 'accepted'

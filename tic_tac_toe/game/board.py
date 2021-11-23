@@ -60,7 +60,7 @@ class Board:
         return False
 
     def is_cell_set(self, row, col):
-        if self._cell_is_set(self.board[row][col]):
+        if self.is_cell_on_board(row, col) and self._cell_is_set(self.board[row][col]):
             return True
         return False
 
@@ -69,3 +69,8 @@ class Board:
 
     def get_player_marks(self):
         return self.player_marks
+
+    def is_cell_on_board(self, row, col):
+        if row >= 0 and row <= self.size - 1 and col >= 0 and col <= self.size - 1:
+            return True
+        return False

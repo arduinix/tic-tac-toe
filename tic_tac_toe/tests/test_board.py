@@ -86,3 +86,15 @@ def test_get_player_marks_returns_expected_player_marks():
     board_with_expected_marks = Board(player_marks=player_marks)
 
     assert board_with_expected_marks.get_player_marks() == player_marks
+
+
+def test_entered_cell_is_on_board():
+    board = Board(size=3)
+
+    assert board.is_cell_on_board(1, 1) is True
+
+
+def test_entered_cell_is_not_on_board():
+    board = Board(size=3)
+
+    assert board.is_cell_on_board(2, 4) is False
