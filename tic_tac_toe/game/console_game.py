@@ -1,5 +1,5 @@
 import re
-from .game_actions import GameActions
+from .game import Game
 from .win_detection import WinDetector
 
 
@@ -9,7 +9,7 @@ class ConsoleGame(object):
         self.play_game()
 
     def play_game(self):
-        game = GameActions()
+        game = Game()
         print(game.messager.get_message('welcome'))
 
         board_size_input = input(game.messager.get_message('board_size'))
