@@ -60,7 +60,7 @@ class Board:
         return False
 
     def is_cell_set(self, row, col):
-        if self._cell_is_set(self.board[row][col]):
+        if self.is_cell_on_board(row, col) and self._cell_is_set(self.board[row][col]):
             return True
         return False
 

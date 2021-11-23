@@ -1,3 +1,4 @@
+import re
 from .game_actions import GameActions
 from .win_detection import WinDetector
 
@@ -9,10 +10,9 @@ class ConsoleGame(object):
 
     def play_game(self):
         game = GameActions()
-        print(game.get_message('welcome'))
-        game_type_input = input(game.get_message('game_type'))
-        game_type = int(game_type_input) if game_type_input != '' else 1
-        board_size_input = input(game.get_message('board_size'))
+        print(game.messager.get_message('welcome'))
+
+        board_size_input = input(game.messager.get_message('board_size'))
         board_size = int(board_size_input) if board_size_input != '' else 3
 
         game.start_game(board_size=board_size, game_type=game_type)
@@ -23,10 +23,13 @@ class ConsoleGame(object):
             print("Player {}'s turn".format(game.get_current_player()))
 
             result = ""
-            while result != 'accepted':
-                player_turn = input(game.get_message('coordinate_entry'))
-                row, col = player_turn.split(',')
-                result = game.play_cell(int(row), int(col))
+            while not result == 'accepted':
+                player_turn = input(game.messager.get_message('coordinate_entry'))
+                if re.fullmatch('[0-9]+(,[0-9]+)', player_turn):
+                    row, col = player_turn.split(',')
+                    result = game.play_cell(int(row), int(col))
+                else:
+                    result = 'The entered string: \"{}\" is invalid. Use the form row,col.'.format(player_turn)
                 if not result == 'accepted':
                     print(result)
 
@@ -34,7 +37,7 @@ class ConsoleGame(object):
             print(game.board.get_board_string())
 
             if game.board.is_board_full():
-                print(game.get_message('board_full'))
+                print(game.messager.get_message('board_full'))
             win_detector = WinDetector(board=game.get_game_board())
 
             if win_detector.is_win():
