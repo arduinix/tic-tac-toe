@@ -12,10 +12,10 @@ source venv/bin/activate
 ```
 ## Verify venv Operation
 ```bash
-(venv) (base) np-macbookpro:tic-tac-toe npekular$ python --version
+$ python --version
 Python 3.9.7
-(venv) (base) np-macbookpro:tic-tac-toe npekular$ pip --version
-pip 21.2.4 from /Users/npekular/repos/se_practice/tic-tac-toe/venv/lib/python3.9/site-packages/pip (python 3.9)
+$ pip --version
+pip 21.2.4 from /Users/user/repos/se_practice/tic-tac-toe/venv/lib/python3.9/site-packages/pip (python 3.9)
 ```
 
 ## Install Required Packages
